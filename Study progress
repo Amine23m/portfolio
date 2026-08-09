@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Security+ 14-Day Study Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter', 'sans-serif'] },
+            colors: {
+              navy: { 900: '#0f172a', 800: '#1e293b', 700: '#334155', 600: '#475569', 500: '#64748b', 400: '#94a3b8', 300: '#cbd5e1', 200: '#e2e8f0', 100: '#f1f5f9' },
+              electric: { DEFAULT: '#3b82f6', dark: '#2563eb', light: '#60a5fa', glow: 'rgba(59,130,246,0.3)' },
+              success: { DEFAULT: '#22c55e', dark: '#16a34a', light: '#4ade80', bg: 'rgba(34,197,94,0.15)' },
+              warn: { DEFAULT: '#f59e0b', dark: '#d97706', light: '#fbbf24', bg: 'rgba(245,158,11,0.15)' },
+              danger: { DEFAULT: '#ef4444', dark: '#dc2626', light: '#f87171', bg: 'rgba(239,68,68,0.15)' },
+              d1: '#3b82f6', d2: '#f97316', d3: '#a855f7', d4: '#22c55e', d5: '#14b8a6',
+              review: '#f59e0b', finalprep: '#ef4444',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      * { box-sizing: border-box; }
+      body { background: #0f172a; color: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #1e293b; }
+      ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+      .tab-active { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
+      .tab-inactive { color: #94a3b8; border-bottom: 2px solid transparent; }
+      .tab-inactive:hover { color: #cbd5e1; }
+      .day-card { transition: all 0.2s ease; cursor: pointer; }
+      .day-card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(59,130,246,0.15); }
+      .day-card.active { ring: 2px; box-shadow: 0 0 0 2px #3b82f6, 0 4px 20px rgba(59,130,246,0.2); }
+      .day-card.today { animation: todayPulse 2s infinite; }
+      @keyframes todayPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.4); } 50% { box-shadow: 0 0 15px 4px rgba(59,130,246,0.2); } }
+      .day-card.past { opacity: 0.65; }
+      .detail-panel { animation: slideIn 0.3s ease-out; }
+      @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+      .progress-ring { transition: stroke-dashoffset 0.6s ease; }
+      .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+      .accordion-content.open { max-height: 2000px; }
+      .check-item input[type="checkbox"] { appearance: none; width: 18px; height: 18px; border: 2px solid #475569; border-radius: 4px; cursor: pointer; flex-shrink: 0; position: relative; transition: all 0.2s; }
+      .check-item input[type="checkbox"]:checked { background: #22c55e; border-color: #22c55e; }
+      .check-item input[type="checkbox"]:checked::after { content: '✓'; position: absolute; top: -1px; left: 2px; color: white; font-size: 12px; font-weight: 700; }
+      .domain-pill { padding: 2px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; letter-spacing: 0.03em; }
+      .stat-card { background: #1e293b; border-radius: 16px; padding: 20px; }
+      .search-input { background: #334155; border: 1px solid #475569; color: #e2e8f0; }
+      .search-input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+      .score-input { background: #334155; border: 1px solid #475569; color: #e2e8f0; width: 70px; border-radius: 8px; padding: 4px 8px; text-align: center; }
+      .score-input:focus { outline: none; border-color: #3b82f6; }
+      @media (max-width: 767px) {
+        .cal-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      }
+    </style>
+</head>
+<body data-id="0" class="min-h-screen flex flex-col">
+    <app-icon data-id="1" hidden data-icon="shield" data-palette="Blue"></app-icon>
+
+    <!-- Header -->
+    <header data-id="2" class="bg-navy-800 border-b border-navy-700 px-4 md:px-6 py-3 sticky top-0 z-50">
+      <div data-id="3" class="max-w-6xl mx-auto flex items-center justify-between">
+        <div data-id="4" class="flex items-center gap-3">
+          <div data-id="5" class="w-9 h-9 rounded-xl bg-electric flex items-center justify-center">
+            <i data-id="6" data-lucide="shield" class="w-5 h-5 text-white"></i>
+          </div>
+          <div data-id="7">
+            <h1 data-id="8" class="text-base md:text-lg font-bold text-white leading-tight">Security+ Study Plan</h1>
+            <p data-id="9" class="text-xs text-navy-400">SY0-701 · 14-Day Sprint for Mohamed</p>
+          </div>
+        </div>
+        <div data-id="10" class="flex items-center gap-3">
+          <div data-id="11" id="countdown-badge" class="hidden md:flex items-center gap-1.5 bg-danger/10 border border-danger/30 text-danger-light text-xs font-semibold px-3 py-1.5 rounded-full">
+            <i data-id="12" data-lucide="clock" class="w-3.5 h-3.5"></i>
+            <span data-id="13" id="countdown-text">Exam in X days</span>
+          </div>
+          <div data-id="14" id="countdown-mobile" class="md:hidden flex items-center gap-1 bg-danger/10 border border-danger/30 text-danger-light text-xs font-semibold px-2 py-1 rounded-full">
+            <i data-id="15" data-lucide="clock" class="w-3 h-3"></i>
+            <span data-id="16" id="countdown-text-m">X days</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Motivational Quote -->
+    <div data-id="17" class="bg-navy-800/50 border-b border-navy-700/50 px-4 py-2 text-center">
+      <p data-id="18" id="quote-text" class="text-xs md:text-sm text-navy-400 italic"></p>
+    </div>
+
+    <!-- Tab Bar -->
+    <nav data-id="19" class="bg-navy-800 border-b border-navy-700 px-4 md:px-6 sticky top-[60px] z-40">
+      <div data-id="20" class="max-w-6xl mx-auto flex gap-0">
+        <button data-id="21" class="tab-btn tab-active flex items-center gap-1.5 px-4 py-3 text-sm font-medium transition-colors" data-tab="daily">
+          <i data-id="22" data-lucide="calendar-days" class="w-4 h-4"></i>
+          <span data-id="23" class="hidden sm:inline">Daily Plan</span>
+          <span data-id="24" class="sm:hidden">Plan</span>
+        </button>
+        <button data-id="25" class="tab-btn tab-inactive flex items-center gap-1.5 px-4 py-3 text-sm font-medium transition-colors" data-tab="progress">
+          <i data-id="26" data-lucide="bar-chart-3" class="w-4 h-4"></i>
+          <span data-id="27" class="hidden sm:inline">Progress</span>
+          <span data-id="28" class="sm:hidden">Stats</span>
+        </button>
+        <button data-id="29" class="tab-btn tab-inactive flex items-center gap-1.5 px-4 py-3 text-sm font-medium transition-colors" data-tab="reference">
+          <i data-id="30" data-lucide="brain" class="w-4 h-4"></i>
+          <span data-id="31" class="hidden sm:inline">Quick Reference</span>
+          <span data-id="32" class="sm:hidden">Ref</span>
+        </button>
+      </div>
+    </nav>
+
+    <main data-id="33" class="flex-1 px-4 md:px-6 py-5 max-w-6xl mx-auto w-full">
+
+      <!-- ========== TAB 1: DAILY PLAN ========== -->
+      <section data-id="34" id="tab-daily" class="tab-content">
+        <!-- Overall Progress Bar -->
+        <div data-id="35" class="mb-4">
+          <div data-id="36" class="flex items-center justify-between mb-1.5">
+            <span data-id="37" class="text-xs font-medium text-navy-400">Overall Completion</span>
+            <span data-id="38" id="overall-pct" class="text-xs font-bold text-electric">0%</span>
+          </div>
+          <div data-id="39" class="w-full h-2.5 bg-navy-700 rounded-full overflow-hidden">
+            <div data-id="40" id="overall-bar" class="h-full bg-gradient-to-r from-electric to-blue-400 rounded-full transition-all duration-500" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- Domain Coverage Pills -->
+        <div data-id="41" class="flex flex-wrap gap-2 mb-5">
+          <div data-id="42" class="domain-pill bg-d1/15 text-blue-400 border border-d1/30" id="dp-d1">D1: General Security</div>
+          <div data-id="43" class="domain-pill bg-d2/15 text-orange-400 border border-d2/30" id="dp-d2">D2: Threats</div>
+          <div data-id="44" class="domain-pill bg-d3/15 text-purple-400 border border-d3/30" id="dp-d3">D3: Architecture</div>
+          <div data-id="45" class="domain-pill bg-d4/15 text-green-400 border border-d4/30" id="dp-d4">D4: Operations</div>
+          <div data-id="46" class="domain-pill bg-d5/15 text-teal-400 border border-d5/30" id="dp-d5">D5: Management</div>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div data-id="47" class="cal-grid grid grid-cols-7 gap-2 mb-5" id="calendar-grid"></div>
+
+        <!-- Day Detail Panel -->
+        <div data-id="48" id="day-detail" class="hidden detail-panel bg-navy-800 rounded-2xl border border-navy-700 p-4 md:p-6"></div>
+      </section>
+
+      <!-- ========== TAB 2: PROGRESS ========== -->
+      <section data-id="49" id="tab-progress" class="tab-content hidden">
+        <div data-id="50" class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <!-- Left: Circle + Domain Bars -->
+          <div data-id="51" class="lg:col-span-1 flex flex-col gap-4">
+            <!-- Circle Gauge -->
+            <div data-id="52" class="stat-card flex flex-col items-center">
+              <p data-id="53" class="text-xs font-medium text-navy-400 mb-3 uppercase tracking-wider">Overall Progress</p>
+              <div data-id="54" class="relative w-36 h-36">
+                <svg data-id="55" class="w-36 h-36 -rotate-90" viewBox="0 0 144 144">
+                  <circle data-id="56" cx="72" cy="72" r="62" stroke="#334155" stroke-width="10" fill="none"/>
+                  <circle data-id="57" id="progress-ring" cx="72" cy="72" r="62" stroke="#3b82f6" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="389.56" stroke-dashoffset="389.56" class="progress-ring"/>
+                </svg>
+                <div data-id="58" class="absolute inset-0 flex flex-col items-center justify-center">
+                  <span data-id="59" id="circle-pct" class="text-3xl font-bold text-white tabular-nums">0%</span>
+                  <span data-id="60" class="text-xs text-navy-400">complete</span>
+                </div>
+              </div>
+            </div>
+            <!-- Domain Bars -->
+            <div data-id="61" class="stat-card">
+              <p data-id="62" class="text-xs font-medium text-navy-400 mb-3 uppercase tracking-wider">Domain Coverage</p>
+              <div data-id="63" class="flex flex-col gap-3" id="domain-bars"></div>
+            </div>
+          </div>
+
+          <!-- Right: Stats + Scores -->
+          <div data-id="64" class="lg:col-span-2 flex flex-col gap-4">
+            <!-- Stats Row -->
+            <div data-id="65" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div data-id="66" class="stat-card text-center">
+                <p data-id="67" class="text-2xl font-bold text-white tabular-nums" id="stat-total">0</p>
+                <p data-id="68" class="text-xs text-navy-400 mt-1">Total Tasks</p>
+              </div>
+              <div data-id="69" class="stat-card text-center">
+                <p data-id="70" class="text-2xl font-bold text-success tabular-nums" id="stat-done">0</p>
+                <p data-id="71" class="text-xs text-navy-400 mt-1">Completed</p>
+              </div>
+              <div data-id="72" class="stat-card text-center">
+                <p data-id="73" class="text-2xl font-bold text-warn tabular-nums" id="stat-questions">0</p>
+                <p data-id="74" class="text-xs text-navy-400 mt-1">Questions Practiced</p>
+              </div>
+              <div data-id="75" class="stat-card text-center">
+                <p data-id="76" class="text-2xl font-bold text-electric tabular-nums" id="stat-avg">—</p>
+                <p data-id="77" class="text-xs text-navy-400 mt-1">Avg Score</p>
+              </div>
+            </div>
+
+            <!-- Streak -->
+            <div data-id="78" class="stat-card flex items-center gap-4">
+              <div data-id="79" class="w-12 h-12 rounded-xl bg-warn/15 flex items-center justify-center">
+                <i data-id="80" data-lucide="flame" class="w-6 h-6 text-warn"></i>
+              </div>
+              <div data-id="81">
+                <p data-id="82" class="text-lg font-bold text-white tabular-nums"><span data-id="83" id="streak-count">0</span> day streak</p>
+                <p data-id="84" class="text-xs text-navy-400">Consecutive days with at least 1 task completed</p>
+              </div>
+            </div>
+
+            <!-- Motivational Message -->
+            <div data-id="85" class="stat-card border border-electric/20 bg-electric/5">
+              <p data-id="86" id="motiv-msg" class="text-sm text-navy-300"></p>
+            </div>
+
+            <!-- Practice Qs Log -->
+            <div data-id="87" class="stat-card">
+              <p data-id="88" class="text-xs font-medium text-navy-400 mb-3 uppercase tracking-wider">Practice Questions Log</p>
+              <div data-id="89" class="overflow-x-auto">
+                <table data-id="90" class="w-full text-sm">
+                  <thead data-id="91">
+                    <tr data-id="92" class="text-xs text-navy-400 uppercase border-b border-navy-700">
+                      <th data-id="93" class="text-left py-2 pr-2">Day</th>
+                      <th data-id="94" class="text-left py-2 pr-2">Date</th>
+                      <th data-id="95" class="text-center py-2 pr-2">Qs</th>
+                      <th data-id="96" class="text-center py-2 pr-2">Score %</th>
+                      <th data-id="97" class="text-center py-2">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody data-id="98" id="score-table-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TAB 3: QUICK REFERENCE ========== -->
+      <section data-id="99" id="tab-reference" class="tab-content hidden">
+        <div data-id="100" class="mb-4">
+          <div data-id="101" class="relative">
+            <i data-id="102" data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-navy-500"></i>
+            <input data-id="103" type="text" id="ref-search" class="search-input w-full pl-10 pr-4 py-2.5 rounded-xl text-sm" placeholder="Search mnemonics, terms, frameworks..." />
+          </div>
+        </div>
+        <div data-id="104" id="ref-cards" class="flex flex-col gap-3"></div>
+      </section>
+    </main>
+
+    <footer data-id="105" class="py-6 text-center border-t border-navy-700/50">
+      <p data-id="106" class="text-xs text-navy-500">Made by Copilot</p>
+    </footer>
+
+    <script>
+    // ===== STUDY DATA =====
+    const STUDY_DAYS = [
+      {
+        day:1, date:'2026-08-07', title:'General Security Concepts (Part 1)', domain:'D1', domainName:'Domain 1: General Security Concepts', color:'#3b82f6',
+        focus:['CIA Triad & Non-repudiation','AAA Framework (Authentication, Authorization, Accounting)','Control Categories: Technical, Managerial, Operational, Physical','Security Control Types: Preventive, Detective, Corrective, Deterrent, Compensating'],
+        resources:['CompTIA Official Study Guide Ch.1–2','Professor Messer Domain 1 videos (1.1–1.2)'],
+        practiceTarget:'20 questions — aim for 70%+ (baseline)',
+        memo:'CIA = Confidentiality, Integrity, Availability. AAA = Authentication, Authorization, Accounting. RADIUS vs TACACS+.',
+        tasks:['Watch Domain 1 intro videos','Read Ch.1 CIA & AAA','Create flashcard set for control types','Complete 20 practice questions','Log score','Review wrong answers'],
+        time:'3–4 hours'
+      },
+      {
+        day:2, date:'2026-08-08', title:'General Security Concepts (Part 2)', domain:'D1', domainName:'Domain 1: General Security Concepts', color:'#3b82f6',
+        focus:['Zero Trust Architecture (policy engine, policy administrator, policy enforcement)','Cryptography fundamentals (symmetric vs asymmetric)','PKI & Digital Certificates','Hashing algorithms','Physical Security controls'],
+        resources:['CompTIA Study Guide Ch.3–4','Professor Messer 1.4 Cryptography','Jason Dion Security+ course'],
+        practiceTarget:'25 questions — aim for 72%+',
+        memo:'AES (symmetric, 128/256-bit), RSA (asymmetric, 2048-bit+), SHA-256 (hashing). Never confuse encrypt vs hash. DES is dead.',
+        tasks:['Study Zero Trust concepts (cloud background leverage!)','Read cryptography chapter','Memorize algorithm table','Do 25 crypto-focused practice Qs','Review Day 1 flashcards (spaced rep)','Log score'],
+        time:'3–4 hours'
+      },
+      {
+        day:3, date:'2026-08-09', title:'Threats, Vulns & Mitigations (Part 1)', domain:'D2', domainName:'Domain 2: Threats, Vulnerabilities & Mitigations', color:'#f97316',
+        focus:['Threat actor types & motivations','Malware types: virus, worm, trojan, ransomware, rootkit, spyware, keylogger','Social Engineering: phishing, spear phishing, whaling, vishing, smishing, pretexting, baiting'],
+        resources:['CompTIA Study Guide Ch.5–6','Professor Messer 2.1–2.2','Darril Gibson Security+ book'],
+        practiceTarget:'30 questions — aim for 72%+',
+        memo:'APT = Advanced Persistent Threat (nation-state). Script kiddies = low skill. Hacktivists = ideology-driven. Insider threats = most dangerous. Whaling = C-level execs.',
+        tasks:['Study all threat actor categories','Create malware type flashcards','Map social engineering attack types','Practice 30 threat-focused Qs','Review Days 1–2 flashcards','Log score'],
+        time:'3.5–4.5 hours'
+      },
+      {
+        day:4, date:'2026-08-10', title:'Threats, Vulns & Mitigations (Part 2)', domain:'D2', domainName:'Domain 2: Threats, Vulnerabilities & Mitigations', color:'#f97316',
+        focus:['Vulnerability scanning vs Penetration testing','Application attacks: SQL injection, XSS, CSRF, buffer overflow, race condition','Network attacks: DoS, DDoS, MITM, replay, spoofing, ARP poisoning','Password attacks: brute force, dictionary, rainbow table, credential stuffing'],
+        resources:['Professor Messer 2.3–2.4','TryHackMe free rooms (OWASP Top 10)','Jason Dion vulnerability module'],
+        practiceTarget:'30 questions — aim for 73%+',
+        memo:'SQL injection = input validation fail. XSS = reflected vs stored vs DOM. CSRF = forged requests. Buffer overflow = memory boundary violation. Replay attack = captured and reused.',
+        tasks:['Study application attack types','Study network attack categories','Memorize attack → mitigation pairs','Practice 30 attack-focused Qs','Review Flashcards Days 1–3','Log score'],
+        time:'4–5 hours'
+      },
+      {
+        day:5, date:'2026-08-11', title:'Threats, Vulns & Mitigations (Part 3)', domain:'D2', domainName:'Domain 2: Threats, Vulnerabilities & Mitigations', color:'#f97316',
+        focus:['Vulnerability management process','Threat intelligence (OSINT, ISAC, dark web)','Indicators of Compromise (IOC)','MITRE ATT&CK framework','Hardening techniques: patching, config baselines, removing unnecessary services'],
+        resources:['Professor Messer 2.5','MITRE ATT&CK website overview','CompTIA Study Guide Ch.8'],
+        practiceTarget:'30 questions — aim for 74%+',
+        memo:'CVE = Common Vulnerabilities and Exposures. CVSS = scoring 0–10. IOC types: IP addresses, file hashes, domain names. Threat feeds = STIX/TAXII format.',
+        tasks:['Study full vulnerability management lifecycle','Review MITRE ATT&CK overview','Build IOC reference card','Practice 30 Domain 2 mixed Qs','Spaced rep: all Domain 1+2 flashcards','Log score'],
+        time:'3.5–4.5 hours'
+      },
+      {
+        day:6, date:'2026-08-12', title:'Week 1 Review & Gap Analysis', domain:'Review', domainName:'Review Day', color:'#f59e0b',
+        focus:['Review all Domain 1 & 2 content','Identify and drill weak areas','Simulate exam pressure with timed questions','Reinforce all memorization checkpoints'],
+        resources:['All Professor Messer Domain 1–2 notes','ExamCompass free practice tests','Quizlet Security+ decks'],
+        practiceTarget:'50 questions (timed, 90-second avg) — aim for 75%+',
+        memo:'Run full flashcard review — all control types, all attack types, all crypto algorithms, all threat actors. No peeking.',
+        tasks:['Complete 50-question timed quiz','Identify and list all missed topics','Re-study 3 weakest topics from Domains 1–2','Update flashcard deck with any gaps','Rest and consolidate — no new material','Log score'],
+        time:'3–4 hours'
+      },
+      {
+        day:7, date:'2026-08-13', title:'Security Architecture (Part 1)', domain:'D3', domainName:'Domain 3: Security Architecture', color:'#a855f7',
+        focus:['Network security architecture: segmentation, DMZ, screened subnets, VLANs','Firewall types: packet filtering, stateful, NGFW, WAF','IDS vs IPS: detection vs prevention, signature vs anomaly vs heuristic','VPNs: IPsec, SSL/TLS, site-to-site, remote access'],
+        resources:['CompTIA Study Guide Ch.9–10','Professor Messer 3.1–3.2','Leverage your IT support background'],
+        practiceTarget:'30 questions — aim for 74%+',
+        memo:'DMZ = buffer zone between internet and internal. NGFW = Layer 7 aware. IDS = alerts only. IPS = blocks traffic. IPsec uses AH + ESP. SSL VPN = clientless browser.',
+        tasks:['Map out network security zones','Study firewall generations','Memorize IDS vs IPS differences','Study VPN protocols','Practice 30 network security Qs','Log score'],
+        time:'3.5–4.5 hours'
+      },
+      {
+        day:8, date:'2026-08-14', title:'Security Architecture (Part 2)', domain:'D3', domainName:'Domain 3: Security Architecture', color:'#a855f7',
+        focus:['Cloud security concepts: IaaS/PaaS/SaaS shared responsibility, CSP security tools','Virtualization & container security','Secure network design: SD-WAN, SASE','Wireless security: WPA2, WPA3, EAP types','Infrastructure as Code security'],
+        resources:['Professor Messer 3.3–3.4','Your cloud background is a huge advantage here — map AWS/Azure security tools to concepts'],
+        practiceTarget:'30 questions — aim for 76%+',
+        memo:'Shared responsibility = you own data, CSP owns infrastructure (varies by model). WPA3 uses SAE. EAP-TLS = most secure (certificates). PEAP = password-based.',
+        tasks:['Leverage cloud knowledge — map Security+ cloud concepts','Study container/VM security','Review wireless security protocols','Practice 30 cloud/arch Qs','Spaced rep: Domain 1–2 flashcards (10 min)','Log score'],
+        time:'3.5–4 hours'
+      },
+      {
+        day:9, date:'2026-08-15', title:'Security Operations (Part 1)', domain:'D4', domainName:'Domain 4: Security Operations', color:'#22c55e',
+        focus:['IAM — MFA types, SSO, federation (SAML/OAuth/OIDC)','PAM (Privileged Access Management)','RBAC vs ABAC vs MAC vs DAC','Endpoint security: EDR, XDR, antivirus, HIPS','Mobile device management: MDM, MAM, containerization'],
+        resources:['CompTIA Study Guide Ch.12–13','Professor Messer 4.1–4.2','Jason Dion IAM module'],
+        practiceTarget:'35 questions — aim for 75%+',
+        memo:'SAML = SSO for web apps (XML). OAuth = authorization (not authn). OIDC = adds identity to OAuth. MFA factors: something you know/have/are/somewhere. PAM = privileged access.',
+        tasks:['Study all MFA types and factors','Map federation protocols (SAML/OAuth/OIDC)','Study access control models with examples','Review endpoint security tools','Practice 35 IAM-focused Qs','Log score'],
+        time:'4–5 hours'
+      },
+      {
+        day:10, date:'2026-08-16', title:'Security Operations (Part 2)', domain:'D4', domainName:'Domain 4: Security Operations', color:'#22c55e',
+        focus:['SIEM & SOAR (log aggregation, correlation, automated response)','Incident Response lifecycle: PICERL','Digital Forensics: chain of custody, order of volatility, legal holds','Vulnerability management operations'],
+        resources:['Professor Messer 4.3–4.6','CompTIA Study Guide Ch.14–15','NIST IR guide summary'],
+        practiceTarget:'35 questions — aim for 76%+',
+        memo:'PICERL order is sacred. Order of volatility: CPU registers → RAM → swap → disk → remote. Chain of custody = never break it. SIEM collects; SOAR automates response.',
+        tasks:['Memorize PICERL steps cold','Study order of volatility list','Study digital forensics procedures','Review SIEM vs SOAR distinction','Practice 35 incident response Qs','Spaced rep: all domains flashcards','Log score'],
+        time:'4–5 hours'
+      },
+      {
+        day:11, date:'2026-08-17', title:'Security Program Management & Oversight', domain:'D5', domainName:'Domain 5: Security Program Management & Oversight', color:'#14b8a6',
+        focus:['Governance frameworks: policies, standards, procedures, guidelines','Risk management: risk assessment, risk register, qualitative vs quantitative','Compliance: NIST CSF, ISO 27001, SOC 2, GDPR, HIPAA, PCI-DSS','Data privacy and classification','Third-party risk management: vendor assessments, supply chain'],
+        resources:['CompTIA Study Guide Ch.16–18','Professor Messer 5.1–5.3','NIST CSF overview'],
+        practiceTarget:'35 questions — aim for 75%+',
+        memo:'Risk = Likelihood × Impact. ALE = AV × EF × ARO. Risk responses: Accept/Transfer/Avoid/Mitigate. Data states: at rest/in transit/in use. DPO required under GDPR.',
+        tasks:['Map all compliance frameworks and their scope','Study risk formulas and calculations','Learn data classification levels','Study third-party risk controls','Practice 35 governance/risk Qs','Log score'],
+        time:'3.5–4.5 hours'
+      },
+      {
+        day:12, date:'2026-08-18', title:'Full Domain Review & Memorization Sprint', domain:'Review', domainName:'Review Day', color:'#f59e0b',
+        focus:['Cross-domain review, fill all remaining gaps','Intensive memorization drill of hardest topics','Crypto algorithms, attack types, IR steps, compliance frameworks','Performance-based question (PBQ) practice'],
+        resources:['Professor Messer practice exams','Dion Training practice exams (paid — highly recommended)','All flashcard decks'],
+        practiceTarget:'60 questions mixed domains — aim for 78%+',
+        memo:'Full pass through all memorization checkpoints from Days 1–11. Mark any you can\'t recall instantly — those are tomorrow\'s priority.',
+        tasks:['60-question mixed timed practice exam','List all topics still below 75%','Deep drill on weakest 3 topics','PBQ scenario practice (drag-and-drop style)','Update all flashcards with gaps','Log score'],
+        time:'4–5 hours'
+      },
+      {
+        day:13, date:'2026-08-19', title:'Full Simulated Exam + Targeted Repair', domain:'Final', domainName:'Final Exam Prep', color:'#ef4444',
+        focus:['Simulate real exam conditions — 90 questions, 90 minutes, no breaks, no notes','Analyze results and repair weak spots'],
+        resources:['Dion Training or MeasureUp full practice exam','Professor Messer performance-based questions'],
+        practiceTarget:'90 questions (full simulation) — target 80%+ (passing is 750/900)',
+        memo:'After exam — identify every domain with under 75% performance and do a final targeted flashcard drill.',
+        tasks:['Complete 90-min full simulation exam (no interruptions)','Score and map results by domain','Targeted re-study: drill weakest domain for 60 minutes','Light review of strong areas','Final flashcard pass for any gaps','Rest well tonight — no late-night cramming'],
+        time:'4–5 hours'
+      },
+      {
+        day:14, date:'2026-08-20', title:'Final Review & Exam Readiness', domain:'Final', domainName:'Final Exam Prep', color:'#ef4444',
+        focus:['Light, confidence-building review — no heavy new content','Review only key mnemonics and checkpoints','Exam strategy and mental prep'],
+        resources:['Professor Messer final notes','All personal flashcards','CompTIA exam tips'],
+        practiceTarget:'30 questions (light, warm-up only) — aim for 80%+',
+        memo:'Final rapid-fire: CIA, AAA, PICERL, order of volatility, crypto algorithms, attack types, IR phases. All from memory.',
+        tasks:['30-question light warm-up (not stressful)','Rapid-fire flashcard review (30 min)','Review exam day strategy (read all choices, eliminate wrong, flag PBQs for last)','Prepare ID and exam materials','Rest and sleep well','Visualize success'],
+        time:'2–3 hours'
+      }
+    ];
+
+    const QUOTES = [
+      '"The expert in anything was once a beginner." — Helen Hayes',
+      '"Security is not a product, but a process." — Bruce Schneier',
+      '"The only way to do great work is to love what you do." — Steve Jobs',
+      '"A journey of a thousand miles begins with a single step." — Lao Tzu',
+      '"The more you sweat in training, the less you bleed in combat."',
+      '"Discipline is the bridge between goals and accomplishment." — Jim Rohn',
+      '"In the middle of difficulty lies opportunity." — Albert Einstein',
+      '"Don\'t wish it were easier. Wish you were better." — Jim Rohn',
+      '"There is no security on this earth; there is only opportunity." — Douglas MacArthur',
+      '"Knowledge is of no value unless you put it into practice." — Anton Chekhov',
+      '"Think like a hacker, defend like a pro."',
+      '"Success is the sum of small efforts, repeated day in and day out." — Robert Collier',
+      '"The best time to plant a tree was 20 years ago. The second best time is now."',
+      '"Hackers don\'t break in — they log in. Know your access controls."'
+    ];
+
+    const REF_CARDS = [
+      { title:'CIA Triad', domain:'D1', color:'#3b82f6', content:'<b>Confidentiality</b> — Preventing unauthorized disclosure (encryption, access controls)<br><b>Integrity</b> — Ensuring data is unaltered (hashing, digital signatures)<br><b>Availability</b> — Ensuring systems are accessible (redundancy, backups, load balancing)<br><br><i>Mnemonic: CIA — Can I Access?</i>' },
+      { title:'AAA Framework', domain:'D1', color:'#3b82f6', content:'<b>Authentication</b> — Who are you? (passwords, biometrics, tokens)<br><b>Authorization</b> — What can you access? (permissions, ACLs)<br><b>Accounting</b> — What did you do? (logging, auditing)<br><br><b>RADIUS</b> — UDP 1812/1813, combines authn+authz<br><b>TACACS+</b> — TCP 49, separates authn/authz/acct, Cisco-preferred' },
+      { title:'Control Categories & Types', domain:'D1', color:'#3b82f6', content:'<b>Categories:</b> Technical, Managerial, Operational, Physical<br><br><b>Types:</b><br>• <b>Preventive</b> — Stops threats before they happen (firewall, encryption)<br>• <b>Detective</b> — Identifies threats (IDS, logs, CCTV)<br>• <b>Corrective</b> — Fixes after incident (patching, restoring backups)<br>• <b>Deterrent</b> — Discourages attacks (warning signs, login banners)<br>• <b>Compensating</b> — Alternative when primary fails (MFA when smart cards unavailable)<br>• <b>Directive</b> — Guides behavior (policies, training)' },
+      { title:'Malware Types Quick Reference', domain:'D2', color:'#f97316', content:'<b>Virus</b> — Requires host file, self-replicates<br><b>Worm</b> — Self-replicates WITHOUT host, spreads via network<br><b>Trojan</b> — Disguised as legitimate software<br><b>Ransomware</b> — Encrypts files, demands payment<br><b>Rootkit</b> — Hides deep in OS, very hard to detect<br><b>Spyware</b> — Secretly monitors user activity<br><b>Keylogger</b> — Records keystrokes<br><b>RAT</b> — Remote Access Trojan, gives attacker full control<br><b>Logic Bomb</b> — Triggers on condition (date, event)<br><b>Fileless Malware</b> — Lives in memory, no file on disk' },
+      { title:'Cryptography Cheat Sheet', domain:'D1', color:'#3b82f6', content:'<b>Symmetric (shared key, fast):</b><br>• AES — 128/192/256-bit ✅ Current standard<br>• 3DES — 168-bit (being retired)<br>• DES — 56-bit ❌ DEAD<br>• RC4 — Stream cipher ❌ Deprecated<br><br><b>Asymmetric (key pair, slower):</b><br>• RSA — 2048-4096 bit, encryption + signatures<br>• ECC — Smaller keys, same security, mobile-friendly<br>• Diffie-Hellman — Key exchange only (not encryption)<br>• DSA — Digital signatures only<br><br><b>Hashing (one-way, NOT encryption):</b><br>• MD5 — 128-bit ❌ Broken<br>• SHA-1 — 160-bit ❌ Deprecated<br>• SHA-256 — 256-bit ✅ Standard<br>• SHA-3 — Latest gen ✅<br>• HMAC — Hash + secret key = integrity + auth' },
+      { title:'Network Ports to Memorize (Top 20)', domain:'D3', color:'#a855f7', content:'<table style="width:100%;font-size:13px"><tr><td><b>20/21</b> — FTP</td><td><b>22</b> — SSH/SCP/SFTP</td></tr><tr><td><b>23</b> — Telnet ❌</td><td><b>25</b> — SMTP</td></tr><tr><td><b>53</b> — DNS</td><td><b>67/68</b> — DHCP</td></tr><tr><td><b>69</b> — TFTP</td><td><b>80</b> — HTTP</td></tr><tr><td><b>110</b> — POP3</td><td><b>143</b> — IMAP</td></tr><tr><td><b>161/162</b> — SNMP</td><td><b>389</b> — LDAP</td></tr><tr><td><b>443</b> — HTTPS</td><td><b>445</b> — SMB</td></tr><tr><td><b>636</b> — LDAPS</td><td><b>993</b> — IMAPS</td></tr><tr><td><b>995</b> — POP3S</td><td><b>1433</b> — MS SQL</td></tr><tr><td><b>3306</b> — MySQL</td><td><b>3389</b> — RDP</td></tr></table>' },
+      { title:'Attack Types Quick Reference', domain:'D2', color:'#f97316', content:'<b>Application:</b> SQL injection, XSS (reflected/stored/DOM), CSRF, buffer overflow, race condition, directory traversal, LDAP injection<br><br><b>Network:</b> DoS/DDoS, MITM/on-path, replay, ARP poisoning, DNS poisoning, MAC flooding, VLAN hopping, evil twin<br><br><b>Password:</b> Brute force, dictionary, rainbow table, credential stuffing, password spraying, hybrid<br><br><b>Social Engineering:</b> Phishing, spear phishing, whaling, vishing (voice), smishing (SMS), pretexting, baiting, tailgating, shoulder surfing, dumpster diving, watering hole' },
+      { title:'Incident Response Steps (PICERL)', domain:'D4', color:'#22c55e', content:'<b>P</b>reparation — Policies, training, tools, playbooks<br><b>I</b>dentification — Detect the incident, determine scope<br><b>C</b>ontainment — Limit damage (short-term & long-term)<br><b>E</b>radication — Remove the threat completely<br><b>R</b>ecovery — Restore systems to normal operations<br><b>L</b>essons Learned — Post-incident review, update procedures<br><br><i>Mnemonic: "Please Identify Cats Eating Raw Lasagna"</i>' },
+      { title:'Risk Formulas & Terms', domain:'D5', color:'#14b8a6', content:'<b>Risk = Likelihood × Impact</b><br><br><b>SLE</b> (Single Loss Expectancy) = AV × EF<br><b>ALE</b> (Annual Loss Expectancy) = SLE × ARO<br><br>• <b>AV</b> = Asset Value<br>• <b>EF</b> = Exposure Factor (% of loss)<br>• <b>ARO</b> = Annual Rate of Occurrence<br><br><b>Risk Responses:</b> Accept, Transfer (insurance), Avoid, Mitigate<br><br><b>Qualitative</b> = subjective (high/med/low)<br><b>Quantitative</b> = numeric ($$ values)' },
+      { title:'Compliance Frameworks', domain:'D5', color:'#14b8a6', content:'<b>NIST CSF</b> — Identify, Protect, Detect, Respond, Recover (voluntary, US-focused)<br><b>NIST 800-53</b> — Federal security controls<br><b>ISO 27001</b> — International ISMS standard (certifiable)<br><b>SOC 2</b> — Service org controls (trust principles: security, availability, processing integrity, confidentiality, privacy)<br><b>GDPR</b> — EU data protection, requires DPO, 72-hr breach notification<br><b>HIPAA</b> — US healthcare data (PHI) protection<br><b>PCI-DSS</b> — Payment card industry standard<br><b>FISMA</b> — US federal agency security compliance' },
+      { title:'Authentication & MFA Types', domain:'D4', color:'#22c55e', content:'<b>MFA Factors:</b><br>• Something you <b>know</b> — password, PIN<br>• Something you <b>have</b> — smart card, token, phone<br>• Something you <b>are</b> — biometrics (fingerprint, retina)<br>• Somewhere you <b>are</b> — geolocation, IP<br><br><b>Federation Protocols:</b><br>• <b>SAML</b> — SSO for web apps, XML-based, enterprise<br>• <b>OAuth 2.0</b> — Authorization only (NOT authentication)<br>• <b>OIDC</b> — Adds identity layer on top of OAuth<br>• <b>Kerberos</b> — Ticket-based, uses KDC, port 88, AD default<br>• <b>NTLM</b> — Legacy Windows auth ❌ Weak' },
+      { title:'Zero Trust Key Concepts', domain:'D1', color:'#3b82f6', content:'<b>Core Principle:</b> "Never trust, always verify"<br><br><b>Components:</b><br>• <b>Policy Engine</b> — Makes access decisions<br>• <b>Policy Administrator</b> — Executes decisions (grants/denies)<br>• <b>Policy Enforcement Point</b> — Gateway that enforces<br><br><b>Key Concepts:</b><br>• Micro-segmentation of networks<br>• Continuous authentication and verification<br>• Least privilege access at all times<br>• Assume breach mentality<br>• Context-aware access (device, location, behavior)<br>• Software-defined perimeter (SDP)' }
+    ];
+
+    const STORAGE_KEY = 'secplus_study_plan_v1';
+    const EXAM_DATE_KEY = 'secplus_exam_date';
+
+    // ===== STATE =====
+    let state = loadState();
+    let selectedDay = 1;
+    let currentTab = 'daily';
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) return JSON.parse(raw);
+      } catch(e) {}
+      return { tasks: {}, scores: {} };
+    }
+
+    function saveState() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+    }
+
+    function getExamDate() {
+      try {
+        const d = localStorage.getItem(EXAM_DATE_KEY);
+        if (d) return d;
+      } catch(e) {}
+      return '2026-08-21';
+    }
+
+    function setExamDate(d) {
+      try { localStorage.setItem(EXAM_DATE_KEY, d); } catch(e) {}
+    }
+
+    // ===== HELPERS =====
+    function formatDate(ds) {
+      const d = new Date(ds + 'T12:00:00');
+      return d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' });
+    }
+
+    function shortDate(ds) {
+      const d = new Date(ds + 'T12:00:00');
+      return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });
+    }
+
+    function isToday(ds) {
+      const today = new Date('2026-08-07T10:47:00');
+      const d = new Date(ds + 'T12:00:00');
+      return today.toDateString() === d.toDateString();
+    }
+
+    function isPast(ds) {
+      const today = new Date('2026-08-07T10:47:00');
+      const d = new Date(ds + 'T12:00:00');
+      return d < today && !isToday(ds);
+    }
+
+    function getTaskKey(day, idx) { return 'd' + day + 't' + idx; }
+
+    function isTaskChecked(day, idx) { return !!state.tasks[getTaskKey(day, idx)]; }
+
+    function setTaskChecked(day, idx, val) {
+      state.tasks[getTaskKey(day, idx)] = val;
+      saveState();
+    }
+
+    function getDayTaskCount(day) {
+      const d = STUDY_DAYS.find(x => x.day === day);
+      return d ? d.tasks.length : 0;
+    }
+
+    function getDayCompletedCount(day) {
+      const total = getDayTaskCount(day);
+      let done = 0;
+      for (let i = 0; i < total; i++) { if (isTaskChecked(day, i)) done++; }
+      return done;
+    }
+
+    function isDayComplete(day) { return getDayCompletedCount(day) === getDayTaskCount(day) && getDayTaskCount(day) > 0; }
+
+    function getTotalTasks() { return STUDY_DAYS.reduce((s, d) => s + d.tasks.length, 0); }
+
+    function getTotalCompleted() {
+      let c = 0;
+      STUDY_DAYS.forEach(d => { for (let i = 0; i < d.tasks.length; i++) { if (isTaskChecked(d.day, i)) c++; } });
+      return c;
+    }
+
+    function getOverallPct() {
+      const t = getTotalTasks();
+      return t ? Math.round((getTotalCompleted() / t) * 100) : 0;
+    }
+
+    function getStreak() {
+      let streak = 0;
+      for (let i = 0; i < STUDY_DAYS.length; i++) {
+        const d = STUDY_DAYS[i];
+        if (getDayCompletedCount(d.day) > 0) streak++;
+        else break;
+      }
+      return streak;
+    }
+
+    function getDomainColor(domain) {
+      const map = { D1:'#3b82f6', D2:'#f97316', D3:'#a855f7', D4:'#22c55e', D5:'#14b8a6', Review:'#f59e0b', Final:'#ef4444' };
+      return map[domain] || '#64748b';
+    }
+
+    function getDomainDays(domain) { return STUDY_DAYS.filter(d => d.domain === domain); }
+
+    // ===== RENDER: CALENDAR =====
+    function renderCalendar() {
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+      STUDY_DAYS.forEach(d => {
+        const complete = isDayComplete(d.day);
+        const today = isToday(d.date);
+        const past = isPast(d.date);
+        const active = d.day === selectedDay;
+        const pct = getDayTaskCount(d.day) ? Math.round((getDayCompletedCount(d.day)/getDayTaskCount(d.day))*100) : 0;
+
+        const card = document.createElement('div');
+        card.className = 'day-card rounded-xl p-2.5 md:p-3 relative ' +
+          (active ? 'active bg-navy-700 ' : 'bg-navy-800 ') +
+          (today ? 'today ' : '') +
+          (past && !today ? 'past ' : '');
+        card.style.borderLeft = '3px solid ' + d.color;
+        card.dataset.day = d.day;
+
+        card.innerHTML =
+          '<div class="flex items-center justify-between mb-1">' +
+            '<span class="text-xs font-bold text-white">Day ' + d.day + '</span>' +
+            (complete ? '<span class="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center"><i data-lucide="check" class="w-3 h-3 text-green-400"></i></span>' : '') +
+          '</div>' +
+          '<p class="text-[10px] text-navy-400 mb-1.5">' + shortDate(d.date) + '</p>' +
+          '<div class="domain-pill text-[9px] mb-2" style="background:' + d.color + '20;color:' + d.color + ';border:1px solid ' + d.color + '30">' + d.domain + '</div>' +
+          '<div class="w-full h-1 bg-navy-700 rounded-full overflow-hidden">' +
+            '<div class="h-full rounded-full transition-all" style="width:' + pct + '%;background:' + d.color + '"></div>' +
+          '</div>';
+
+        grid.appendChild(card);
+      });
+
+      // Re-create icons in calendar
+      if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+
+      // Attach click handlers
+      grid.querySelectorAll('.day-card').forEach(card => {
+        card.addEventListener('click', function() {
+          selectedDay = parseInt(this.dataset.day);
+          renderCalendar();
+          renderDayDetail();
+        });
+      });
+    }
+
+    // ===== RENDER: DAY DETAIL =====
+    function renderDayDetail() {
+      const panel = document.getElementById('day-detail');
+      const d = STUDY_DAYS.find(x => x.day === selectedDay);
+      if (!d) { panel.classList.add('hidden'); return; }
+      panel.classList.remove('hidden');
+
+      const prevDay = selectedDay > 1 ? selectedDay - 1 : null;
+      const nextDay = selectedDay < 14 ? selectedDay + 1 : null;
+
+      let tasksHtml = '';
+      d.tasks.forEach((t, i) => {
+        const checked = isTaskChecked(d.day, i);
+        tasksHtml += '<label class="check-item flex items-start gap-3 py-1.5 cursor-pointer">' +
+          '<input type="checkbox" data-day="' + d.day + '" data-idx="' + i + '" ' + (checked ? 'checked' : '') + ' />' +
+          '<span class="text-sm ' + (checked ? 'text-navy-500 line-through' : 'text-navy-200') + '">' + t + '</span>' +
+        '</label>';
+      });
+
+      let focusHtml = d.focus.map(f => '<li class="text-sm text-navy-300 mb-1">' + f + '</li>').join('');
+      let resHtml = d.resources.map(r => '<li class="text-sm text-navy-400 mb-1">' + r + '</li>').join('');
+
+      panel.innerHTML =
+        '<div class="detail-panel">' +
+          '<!-- Nav -->' +
+          '<div class="flex items-center justify-between mb-4">' +
+            '<button class="prev-day-btn flex items-center gap-1 text-sm text-navy-400 hover:text-white transition-colors ' + (!prevDay ? 'invisible' : '') + '" data-nav="' + (prevDay||'') + '">' +
+              '<i data-lucide="chevron-left" class="w-4 h-4"></i> Day ' + (prevDay||'') +
+            '</button>' +
+            '<div class="text-center">' +
+              '<h2 class="text-lg md:text-xl font-bold text-white">Day ' + d.day + ' — ' + d.title + '</h2>' +
+              '<p class="text-xs text-navy-400 mt-0.5">' + formatDate(d.date) + '</p>' +
+            '</div>' +
+            '<button class="next-day-btn flex items-center gap-1 text-sm text-navy-400 hover:text-white transition-colors ' + (!nextDay ? 'invisible' : '') + '" data-nav="' + (nextDay||'') + '">' +
+              'Day ' + (nextDay||'') + ' <i data-lucide="chevron-right" class="w-4 h-4"></i>' +
+            '</button>' +
+          '</div>' +
+
+          '<!-- Domain badge + time -->' +
+          '<div class="flex flex-wrap items-center gap-3 mb-5">' +
+            '<div class="domain-pill text-xs" style="background:' + d.color + '20;color:' + d.color + ';border:1px solid ' + d.color + '40">' + d.domainName + '</div>' +
+            '<div class="flex items-center gap-1 text-xs text-navy-400"><i data-lucide="clock" class="w-3.5 h-3.5"></i> ' + d.time + '</div>' +
+          '</div>' +
+
+          '<!-- Grid -->' +
+          '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
+            '<!-- Left -->' +
+            '<div class="flex flex-col gap-4">' +
+              '<!-- Focus -->' +
+              '<div class="bg-navy-900/50 rounded-xl p-4">' +
+                '<h3 class="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="target" class="w-3.5 h-3.5" style="color:' + d.color + '"></i> Focus Topics</h3>' +
+                '<ul class="list-disc list-inside space-y-0.5">' + focusHtml + '</ul>' +
+              '</div>' +
+              '<!-- Resources -->' +
+              '<div class="bg-navy-900/50 rounded-xl p-4">' +
+                '<h3 class="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="book-open" class="w-3.5 h-3.5 text-electric"></i> Resources</h3>' +
+                '<ul class="list-disc list-inside space-y-0.5">' + resHtml + '</ul>' +
+              '</div>' +
+              '<!-- Practice -->' +
+              '<div class="bg-navy-900/50 rounded-xl p-4">' +
+                '<h3 class="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="help-circle" class="w-3.5 h-3.5 text-warn"></i> Practice Target</h3>' +
+                '<p class="text-sm text-navy-300">' + d.practiceTarget + '</p>' +
+              '</div>' +
+            '</div>' +
+            '<!-- Right -->' +
+            '<div class="flex flex-col gap-4">' +
+              '<!-- Memo -->' +
+              '<div class="bg-navy-900/50 rounded-xl p-4 border border-warn/20">' +
+                '<h3 class="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-2 flex items-center gap-1.5"><i data-lucide="brain" class="w-3.5 h-3.5 text-warn"></i> Memorization Checkpoint</h3>' +
+                '<p class="text-sm text-navy-300">' + d.memo + '</p>' +
+              '</div>' +
+              '<!-- Tasks -->' +
+              '<div class="bg-navy-900/50 rounded-xl p-4">' +
+                '<h3 class="text-xs font-semibold text-navy-400 uppercase tracking-wider mb-3 flex items-center gap-1.5"><i data-lucide="list-checks" class="w-3.5 h-3.5 text-success"></i> Tasks (' + getDayCompletedCount(d.day) + '/' + d.tasks.length + ')</h3>' +
+                '<div class="flex flex-col gap-0.5">' + tasksHtml + '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      // Re-create icons
+      if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+
+      // Task checkbox handlers
+      panel.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', function() {
+          const day = parseInt(this.dataset.day);
+          const idx = parseInt(this.dataset.idx);
+          setTaskChecked(day, idx, this.checked);
+          renderCalendar();
+          renderDayDetail();
+          updateOverallProgress();
+          if (currentTab === 'progress') renderProgressTab();
+        });
+      });
+
+      // Nav handlers
+      const prevBtn = panel.querySelector('.prev-day-btn');
+      const nextBtn = panel.querySelector('.next-day-btn');
+      if (prevBtn && prevBtn.dataset.nav) {
+        prevBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectedDay = parseInt(this.dataset.nav);
+          renderCalendar();
+          renderDayDetail();
+        });
+      }
+      if (nextBtn && nextBtn.dataset.nav) {
+        nextBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectedDay = parseInt(this.dataset.nav);
+          renderCalendar();
+          renderDayDetail();
+        });
+      }
+    }
+
+    // ===== RENDER: OVERALL PROGRESS =====
+    function updateOverallProgress() {
+      const pct = getOverallPct();
+      document.getElementById('overall-pct').textContent = pct + '%';
+      document.getElementById('overall-bar').style.width = pct + '%';
+
+      // Domain pills
+      const domains = ['D1','D2','D3','D4','D5'];
+      const domainLabels = { D1:'D1: General Security', D2:'D2: Threats', D3:'D3: Architecture', D4:'D4: Operations', D5:'D5: Management' };
+      domains.forEach(dom => {
+        const days = getDomainDays(dom);
+        const total = days.reduce((s,d) => s + d.tasks.length, 0);
+        let done = 0;
+        days.forEach(d => { for (let i=0;i<d.tasks.length;i++) if (isTaskChecked(d.day,i)) done++; });
+        const pill = document.getElementById('dp-' + dom.toLowerCase());
+        if (pill) {
+          const dpct = total ? Math.round((done/total)*100) : 0;
+          pill.textContent = domainLabels[dom] + ' · ' + dpct + '%';
+        }
+      });
+    }
+
+    // ===== RENDER: PROGRESS TAB =====
+    function renderProgressTab() {
+      const pct = getOverallPct();
+      const circumference = 2 * Math.PI * 62;
+      const offset = circumference - (pct / 100) * circumference;
+      document.getElementById('progress-ring').setAttribute('stroke-dashoffset', offset);
+      document.getElementById('circle-pct').textContent = pct + '%';
+
+      document.getElementById('stat-total').textContent = getTotalTasks();
+      document.getElementById('stat-done').textContent = getTotalCompleted();
+      document.getElementById('streak-count').textContent = getStreak();
+
+      // Questions + avg
+      let totalQs = 0, totalScore = 0, scoreCount = 0;
+      STUDY_DAYS.forEach(d => {
+        const sc = state.scores['day' + d.day];
+        if (sc) {
+          totalQs += (parseInt(sc.qs) || 0);
+          if (sc.score !== undefined && sc.score !== '' && sc.score !== null) { totalScore += parseFloat(sc.score); scoreCount++; }
+        }
+      });
+      document.getElementById('stat-questions').textContent = totalQs;
+      document.getElementById('stat-avg').textContent = scoreCount ? Math.round(totalScore / scoreCount) + '%' : '—';
+
+      // Domain bars
+      const domBars = document.getElementById('domain-bars');
+      const domainInfo = [
+        { id:'D1', name:'General Security', color:'#3b82f6' },
+        { id:'D2', name:'Threats & Vulns', color:'#f97316' },
+        { id:'D3', name:'Architecture', color:'#a855f7' },
+        { id:'D4', name:'Operations', color:'#22c55e' },
+        { id:'D5', name:'Management', color:'#14b8a6' }
+      ];
+      domBars.innerHTML = '';
+      domainInfo.forEach(dom => {
+        const days = getDomainDays(dom.id);
+        const total = days.reduce((s,d) => s + d.tasks.length, 0);
+        let done = 0;
+        days.forEach(d => { for (let i=0;i<d.tasks.length;i++) if (isTaskChecked(d.day,i)) done++; });
+        const dpct = total ? Math.round((done/total)*100) : 0;
+        domBars.innerHTML +=
+          '<div>' +
+            '<div class="flex items-center justify-between mb-1">' +
+              '<span class="text-xs font-medium" style="color:' + dom.color + '">' + dom.name + '</span>' +
+              '<span class="text-xs text-navy-400 tabular-nums">' + dpct + '%</span>' +
+            '</div>' +
+            '<div class="w-full h-2 bg-navy-700 rounded-full overflow-hidden">' +
+              '<div class="h-full rounded-full transition-all duration-500" style="width:' + dpct + '%;background:' + dom.color + '"></div>' +
+            '</div>' +
+          '</div>';
+      });
+
+      // Motivational message
+      const msg = document.getElementById('motiv-msg');
+      if (pct === 0) msg.textContent = "Welcome, Mohamed! Your Security+ journey starts today. Let's build momentum! 🚀";
+      else if (pct < 20) msg.textContent = "Great start, Mohamed! You're laying the foundation. Keep checking off those tasks! 💪";
+      else if (pct < 40) msg.textContent = "Nice momentum, Mohamed! You're building a solid knowledge base. Stay consistent! 📚";
+      else if (pct < 60) msg.textContent = "You're past the halfway mark, Mohamed! The hardest part is behind you. Keep pushing! 🔥";
+      else if (pct < 80) msg.textContent = "Amazing progress, Mohamed! You're in the home stretch. Your dedication is showing! ⭐";
+      else if (pct < 100) msg.textContent = "Almost there, Mohamed! You've put in incredible work. The exam doesn't stand a chance! 🏆";
+      else msg.textContent = "OUTSTANDING, Mohamed! 100% complete! You're fully prepared. Go ace that exam! 🎓🎉";
+
+      // Score table
+      const tbody = document.getElementById('score-table-body');
+      tbody.innerHTML = '';
+      STUDY_DAYS.forEach(d => {
+        const sc = state.scores['day' + d.day] || {};
+        tbody.innerHTML +=
+          '<tr class="border-b border-navy-700/50">' +
+            '<td class="py-2 pr-2 text-xs font-medium text-white">Day ' + d.day + '</td>' +
+            '<td class="py-2 pr-2 text-xs text-navy-400">' + shortDate(d.date) + '</td>' +
+            '<td class="py-2 pr-2 text-center"><input type="number" class="score-input text-xs qs-input" data-day="' + d.day + '" value="' + (sc.qs || '') + '" placeholder="0" min="0" /></td>' +
+            '<td class="py-2 pr-2 text-center"><input type="number" class="score-input text-xs score-pct-input" data-day="' + d.day + '" value="' + (sc.score !== undefined ? sc.score : '') + '" placeholder="%" min="0" max="100" /></td>' +
+            '<td class="py-2 text-center"><button class="save-score-btn text-xs text-electric hover:text-blue-300 font-medium" data-day="' + d.day + '">Save</button></td>' +
+          '</tr>';
+      });
+
+      // Attach save handlers
+      tbody.querySelectorAll('.save-score-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const day = parseInt(this.dataset.day);
+          const row = this.closest('tr');
+          const qs = row.querySelector('.qs-input').value;
+          const score = row.querySelector('.score-pct-input').value;
+          if (!state.scores) state.scores = {};
+          state.scores['day' + day] = { qs: qs, score: score };
+          saveState();
+          renderProgressTab();
+        });
+      });
+    }
+
+    // ===== RENDER: REFERENCE TAB =====
+    function renderReferenceTab(filter) {
+      const container = document.getElementById('ref-cards');
+      container.innerHTML = '';
+      const q = (filter || '').toLowerCase();
+      REF_CARDS.forEach((card, i) => {
+        if (q && !card.title.toLowerCase().includes(q) && !card.content.toLowerCase().includes(q)) return;
+        const div = document.createElement('div');
+        div.className = 'rounded-xl overflow-hidden';
+        div.innerHTML =
+          '<button class="ref-accordion-btn w-full flex items-center justify-between px-4 py-3 text-left transition-colors hover:brightness-110" style="background:' + card.color + '20" data-idx="' + i + '">' +
+            '<div class="flex items-center gap-2">' +
+              '<div class="w-2 h-2 rounded-full" style="background:' + card.color + '"></div>' +
+              '<span class="text-sm font-semibold" style="color:' + card.color + '">' + card.title + '</span>' +
+            '</div>' +
+            '<span class="text-xs text-navy-400">' + card.domain + '</span>' +
+          '</button>' +
+          '<div class="accordion-content bg-navy-800 px-4" id="ref-acc-' + i + '">' +
+            '<div class="py-3 text-sm text-navy-300 leading-relaxed">' + card.content + '</div>' +
+          '</div>';
+        container.appendChild(div);
+      });
+
+      // Accordion handlers
+      container.querySelectorAll('.ref-accordion-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const idx = this.dataset.idx;
+          const content = document.getElementById('ref-acc-' + idx);
+          content.classList.toggle('open');
+        });
+      });
+    }
+
+    // ===== COUNTDOWN =====
+    function updateCountdown() {
+      const examDate = new Date(getExamDate() + 'T09:00:00');
+      const now = new Date('2026-08-07T10:47:00');
+      const diff = Math.ceil((examDate - now) / (1000 * 60 * 60 * 24));
+      const text = diff > 0 ? 'Exam in ' + diff + ' days' : (diff === 0 ? 'Exam day!' : 'Exam passed');
+      const textM = diff > 0 ? diff + ' days' : (diff === 0 ? 'Today!' : 'Done');
+      document.getElementById('countdown-text').textContent = text;
+      document.getElementById('countdown-text-m').textContent = textM;
+    }
+
+    // ===== QUOTE =====
+    function showQuote() {
+      const dayOfYear = Math.floor((new Date('2026-08-07') - new Date('2026-01-01')) / 86400000);
+      const idx = dayOfYear % QUOTES.length;
+      document.getElementById('quote-text').textContent = QUOTES[idx];
+    }
+
+    // ===== TABS =====
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById('tab-' + tab).classList.remove('hidden');
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        if (btn.dataset.tab === tab) { btn.classList.remove('tab-inactive'); btn.classList.add('tab-active'); }
+        else { btn.classList.remove('tab-active'); btn.classList.add('tab-inactive'); }
+      });
+      if (tab === 'progress') renderProgressTab();
+      if (tab === 'reference') renderReferenceTab('');
+    }
+
+    // ===== INIT =====
+    if (typeof lucide !== 'undefined' && typeof lucide.createIcons === 'function') {
+      lucide.createIcons();
+    }
+
+    showQuote();
+    updateCountdown();
+    renderCalendar();
+    renderDayDetail();
+    updateOverallProgress();
+
+    // Tab handlers
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() { switchTab(this.dataset.tab); });
+    });
+
+    // Search handler for reference tab
+    document.getElementById('ref-search').addEventListener('input', function() {
+      renderReferenceTab(this.value);
+    });
+
+    </script>
+</body>
+</html>
